@@ -9,13 +9,13 @@ Instruction for using this algorithm is just to prepare your workspace and copy 
 
 The launch files available are: -
 
-Turtlebot3_Astar.launch  after launching this file you will see the map and movement of the turtltebot3 using A* path planning technique. 
+Turtlebot3_Astar.launch >>> after launching this file you will see the map and movement of the turtltebot3 using A* path planning technique. 
 
-Turtlebot3_Astar_modified.launch  the same as A* but with modified algorithm, related to the mechanism of A* itself that it provides more optimized path.
+Turtlebot3_Astar_modified.launch >>> the same as A* but with modified algorithm, related to the mechanism of A* itself that it provides more optimized path.
 
-Turtlebot3_BFS.launch   after launching this file you will see the map and movement of the turtltebot3 using A* path planning technique. 
+Turtlebot3_BFS.launch >>>  after launching this file you will see the map and movement of the turtltebot3 using A* path planning technique. 
 
-Turtlebot3_ID_world.launch   after launching this file you will see the map and movement of the turtltebot3 using APF path planning technique. 
+Turtlebot3_ID_world.launch >>>  after launching this file you will see the map and movement of the turtltebot3 using APF path planning technique. 
 
 The related “Python” files associating for all these path planning technquies can be found easily in the src folder. 
 
