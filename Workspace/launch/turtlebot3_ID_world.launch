@@ -1,0 +1,64 @@
+<launch>
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="x_pos" default="4"/>
+  <arg name="y_pos" default="0.5"/>
+  <arg name="z_pos" default="0.0"/>
+	
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="/home/gasser/catkin_ws/src/Milestone5/Mapnew/ID_world.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model turtlebot3_$(arg model) -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
+  <node pkg="Milestone5" name="APF" type="APF.py">
+    <param name="x_Goal" value="4" />   
+    <param name="y_Goal" value="3.5"/>
+    <param name="x_Obs1" value="1" />   
+    <param name="y_Obs1" value="2" />
+    <param name="x_Obs2" value="2.75" />   
+    <param name="y_Obs2" value="3" />
+    <param name="x_Obs3" value="2.775" />   
+    <param name="y_Obs3" value="2.165" />
+    <param name="x_Obs_dash" value="4.24" />   
+    <param name="y_Obs_dash" value="2.31" />
+    <param name="x_Obs4" value="5" />   
+    <param name="y_Obs4" value="2" />
+    <param name="x_Obs5" value="6.5" />   
+    <param name="y_Obs5" value="2" />
+    <param name="x_Obs6" value="8.5" />   
+    <param name="y_Obs6" value="2.5" />
+    <param name="x_Obs7" value="9" />   
+    <param name="y_Obs7" value="1.5" />
+    <param name="x_Obs8" value="9.5" />   
+    <param name="y_Obs8" value="2" />
+
+    <param name="K_att" value="16" />   
+    <param name="K_rep" value="300" /> 
+    <param name="q_star1" value="1.118" />
+    <param name="q_star2" value="0.255" /> 
+    <param name="q_star3" value="1.54" /> 
+    <param name="q_star_dash" value="0.27845" /> 
+    <param name="q_star4" value="1.0012" /> 
+    <param name="q_star5" value="1.115" /> 
+    <param name="q_star6" value="0.705" /> 
+    <param name="q_star7" value="0.5002" /> 
+    <param name="q_star8" value="1.001" /> 
+
+    <param name="tau" value="0.1" /> 
+    <param name="rob_mass" value="1.8" /> 
+   </node>
+
+  <node pkg="Milestone5" name="Lyapunov" type="Lyapunov.py">
+    <param name="K_x" value="2" />   
+    <param name="K_theta" value="2" />
+    <param name="Vd_des" value="0.001" />   
+    <param name="Omega_des" value="0" />
+   </node>
+
+</launch>
